@@ -1,0 +1,35 @@
+####
+#
+#   kaggle Recruit SQL
+#
+####
+
+# reserve date merge
+SELECT
+   a.air_store_id as store_id
+  ,a.visit_datetime as visit_datetime
+  ,a.reserve_datetime as reserve_datetime
+  ,a.reserve_visitors as reserve_visitors
+FROM
+   kaggle_Recruit.air_reserve as a
+UNION ALL
+SELECT
+   c.string_field_0 as store_id
+  ,b.visit_datetime as visit_datetime
+  ,b.reserve_datetime as reserve_datetime
+  ,b.reserve_visitors as reserve_visitors
+FROM
+   kaggle_Recruit.hpg_reserve as b
+  ,kaggle_Recruit.store_id_relation as c
+WHERE
+  c.string_field_1 = b.hpg_store_id
+   
+
+
+-- sort kaggle_Recruit_work.store_reserve
+SELECT
+  *
+FROM
+[kaggle_Recruit_work.store_reserve]
+order by store_id, visit_datetime  asc
+;
